@@ -17,5 +17,12 @@ namespace product_app.Controllers
             List<Book> books = DB.GetBooks();
             return View(books);
         }
+        [HttpGet]
+        public IActionResult Search(string search)
+        {
+            List<Book> books = DB.GetBooks();
+            books = books.Where(b => b.BookName.Contains(search)).ToList();
+            return View("List", books);
+        }
     }
 }

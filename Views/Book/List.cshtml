@@ -3,6 +3,12 @@
     ViewData["Title"] = "Book  List";
 }
 <h1> List</h1>
+
+<form asp-controller="Book" asp-action="Search" method="get">
+    <input type="text" name="search" placeholder="Search by name" />
+    <button type="submit">Search</button>
+</form>
+
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
