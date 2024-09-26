@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using product__app.Models;
+
+using product_app.Models;
 using System.Diagnostics;
 
 namespace product__app.Controllers
@@ -23,10 +24,6 @@ namespace product__app.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        
     }
 }
