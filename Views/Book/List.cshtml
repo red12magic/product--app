@@ -4,7 +4,7 @@
     List<User> users = ViewBag.Users;
 }
 <h1>Book List (@ViewBag.Type)</h1>
-<div class="d-flex mb-2 h-auto">
+<div class="d-flex mb-3 h-auto">
     <form asp-controller="Book" class="d-flex gap-2" asp-action="Search" method="get">
         <input class="form-control" type="text" name="search" placeholder="Search by name" />
         <select name="authorId" class="form-select">
@@ -19,7 +19,7 @@
     <a asp-action="Add" class="btn btn-primary ms-auto">Add</a>
 </div>
 
-<div class="d-flex mb-1 h-auto gap-3">
+<div class="d-flex mb-3 h-auto gap-3">
     <a asp-controller="Book" asp-action="List"
        class="btn @(ViewBag.Type == "All" ? "btn-primary" : "btn-secondary") px-4">
         All
@@ -53,14 +53,14 @@
                        > @users.Find(u => u.UserID == book.UserID)?.Username</a>
                    
                 </td>
-                <td class="d-flex gap-2">
+                <td class="d-flex gap-4">
                     <a asp-controller="Book" asp-action="Detail"
                        asp-route-id="@book.BookID">View</a>
 
-                    <a asp-controller="Book" asp-action="Edit"
+                    <a asp-controller="Book" asp-action="Edit" class="btn-sm btn-secondary text-decoration-none"
                        asp-route-id="@book.BookID">Edit</a>
 
-                    <a asp-controller="Book" asp-action="Delete"
+                    <a asp-controller="Book" asp-action="Delete" class="btn-sm btn-danger text-decoration-none"
                        asp-route-id="@book.BookID">Delete</a>
                 </td>
             </tr>

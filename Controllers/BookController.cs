@@ -1,9 +1,11 @@
 ﻿using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Product_app.Models;
 
 namespace product_app.Controllers
 {
+    [SessionAuthorization]
     public class BookController : Controller
     {
 
@@ -78,12 +80,10 @@ namespace product_app.Controllers
         {
             var books = context.Books.AsQueryable();
 
-            if (!string.IsNullOrEmpty(search))
-            {
+            
                 books = books.Where(b => b.BookName.Contains(search));
-            }
 
-            if (authorId.HasValue)
+            if (authorId != null)
             {
                 books = books.Where(b => b.UserID == authorId.Value);
             }
@@ -91,16 +91,11 @@ namespace product_app.Controllers
 
             return View("List", books.ToList());
         }
-
-        //--------------------------------------------------------------------
-        //EDIT AND DELETE ACTION METHOD 
-
        
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ViewBag.Action = "Edit";
             var book = context.Books.Find(id);
             return View(book);
         }
@@ -110,21 +105,24 @@ namespace product_app.Controllers
         {
           
                 
-                    context.Books.Update(B1);
+                context.Books.Update(B1);
                 context.SaveChanges();
                 return RedirectToAction("List", "Book");
             
                 
         }
 
+        [HttpGet]
+        public IActionResult Delete(int id) {
+            var book = context.Books.Find(id);
+            return View(book);
+        }
 
-        public IActionResult Delete(int bid)
+        [HttpPost]
+        public IActionResult Delete(Book book)
         {
-            Book book = context.Books.Find(bid);
-            if(book != null)
+            if(book != null) 
             {
-
-
             context.Books.Remove(book);
             context.SaveChanges();
             }
