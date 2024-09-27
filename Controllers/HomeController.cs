@@ -1,19 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookStore.Models;
+using Microsoft.AspNetCore.Mvc;
 
-using product_app.Models;
 using System.Diagnostics;
 
 namespace product__app.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
+      
         public IActionResult Index()
         {
             return View();
