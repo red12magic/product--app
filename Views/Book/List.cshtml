@@ -1,20 +1,45 @@
 ﻿@model List<Book>
 @{
     ViewData["Title"] = "Book  List";
+    List<User> users = ViewBag.Users;
 }
-<h1> List</h1>
+<h1>Book List (@ViewBag.Type)</h1>
+<div class="d-flex mb-2 h-auto">
+    <form asp-controller="Book" class="d-flex gap-2" asp-action="Search" method="get">
+        <input class="form-control" type="text" name="search" placeholder="Search by name" />
+        <select name="authorId" class="form-select">
+            <option value="">Select Author</option>
+            @foreach (User user in users)
+            {
+                <option value="@user.UserID">@user.Username</option>
+            }
+        </select>
+        <button class="btn btn-secondary" type="submit">Search</button>
+    </form>
+    <a asp-action="Add" class="btn btn-primary ms-auto">Add</a>
+</div>
 
-<form asp-controller="Book" asp-action="Search" method="get">
-    <input type="text" name="search" placeholder="Search by name" />
-    <button type="submit">Search</button>
-</form>
+<div class="d-flex mb-1 h-auto gap-3">
+    <a asp-controller="Book" asp-action="List"
+       class="btn @(ViewBag.Type == "All" ? "btn-primary" : "btn-secondary") px-4">
+        All
+    </a>
+    <a asp-controller="Book" asp-action="My"
+       class="btn @(ViewBag.Type == "My" ? "btn-primary" : "btn-secondary") px-4">
+        My
+    </a>
+</div>
+
+
 
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>Name</th>
             <th>Price</th>
-            <th>detail</th>
+            <th>Author</th>
+            <th>Detail</th>
+
         </tr>
     </thead>
     <tbody>
@@ -23,6 +48,11 @@
             <tr>
                 <td>@book.BookName</td>
                 <td>@($"{book.BookPrice:C}")</td>
+                <td>
+                    <a asp-controller="User" asp-action="Detail"
+                       > @users.Find(u => u.UserID == book.UserID)?.Username</a>
+                   
+                </td>
                 <td>
                     <a asp-controller="Book" asp-action="Detail"
                        asp-route-id="@book.BookID">View</a>
