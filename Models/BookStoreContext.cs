@@ -12,18 +12,18 @@ namespace BookStore.Models
         public DbSet<Book> Books { get; set; }
         public DbSet<User> Users { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
         
-            modelBuilder.Entity<User>().HasData
-                (
-                new User
-                {
-                    UserID = 1,
-                    Username = "admin",
-                    Password = "admin"
-                }
-            );
-        }
+        //    modelBuilder.Entity<User>().HasData
+        //        (
+        //        new User
+        //        {
+        //            UserID = 1,
+        //            Username = "admin",
+        //            Password = "posfpiewhf"
+        //        }
+        //    );
+        //}
     }
 }

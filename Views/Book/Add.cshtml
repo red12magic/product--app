@@ -6,18 +6,20 @@
 @{
 }
 
+
 <form asp-action="Add" class="w-50 mx-auto d-flex flex-column gap-2" method="post">
-    <div class="form-group>
+    <div class="form-group">
         <label asp-for="BookName">Book name</label>
         <input asp-for="BookName" class="form-control" />
         <span asp-validation-for="BookName" class="text-danger"></span>
-        </div>
-        <div class="form-group>
-            <label asp-for="BookPrice">Book Price</label>
-            <input asp-for="BookPrice" class="form-control" />
-            <span asp-validation-for="BookPrice" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Save</button>
-            </form>
-            <a asp-controller="Home" asp-action="Index" class="mt-5 btn btn-primary">Home</a>
+    </div>
+    <div class="form-group">
+        <label asp-for="BookPrice">Book Price</label>
+        <input asp-for="BookPrice" class="form-control" />
+        <span asp-validation-for="BookPrice" class="text-danger"></span>
+    </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+</form>
+           
+<a asp-controller="Home" asp-action="Index" class="mt-5 btn btn-primary">Home</a>
      

@@ -40,8 +40,8 @@ namespace product__app.Controllers
 
         public IActionResult Logout()
         {
-            HttpContext.Session.Remove("UserId");
-            return RedirectToAction("Index");
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

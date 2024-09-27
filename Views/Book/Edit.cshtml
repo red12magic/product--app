@@ -7,13 +7,13 @@
 }
 
 <form asp-action="Edit" class="w-50 mx-auto d-flex flex-column gap-2" method="post">
-    <div class="form-group>
+    <div class="form-group">
         <label asp-for="BookName">Book name</label>
         <input asp-for="BookName" class="form-control" />
         <span asp-validation-for="BookName" class="text-danger"></span>
     </div>
     <input type="hidden" asp-for="BookID" />
-    <div class="form-group>
+    <div class="form-group">
         <label asp-for="BookPrice">Book Price</label>
         <input asp-for="BookPrice" class="form-control" />
         <span asp-validation-for="BookPrice" class="text-danger"></span>

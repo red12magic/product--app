@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using System.Diagnostics;
 
-namespace product__app.Controllers
+namespace product__app.Controllers //    /Home/Privacy
 {
     public class HomeController : Controller
     {

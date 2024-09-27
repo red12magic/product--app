@@ -6,7 +6,7 @@ using Product_app.Models;
 namespace product_app.Controllers
 {
     [SessionAuthorization]
-    public class BookController : Controller
+    public class BookController : Controller // 
     {
 
         private BookStoreContext context { get; set; }
@@ -80,7 +80,7 @@ namespace product_app.Controllers
         {
             var books = context.Books.AsQueryable();
 
-            
+            if(search != null)
                 books = books.Where(b => b.BookName.Contains(search));
 
             if (authorId != null)
