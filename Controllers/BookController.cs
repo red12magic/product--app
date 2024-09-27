@@ -92,5 +92,44 @@ namespace product_app.Controllers
             return View("List", books.ToList());
         }
 
+        //--------------------------------------------------------------------
+        //EDIT AND DELETE ACTION METHOD 
+
+       
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            ViewBag.Action = "Edit";
+            var book = context.Books.Find(id);
+            return View(book);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Book B1)
+        {
+          
+                
+                    context.Books.Update(B1);
+                context.SaveChanges();
+                return RedirectToAction("List", "Book");
+            
+                
+        }
+
+
+        public IActionResult Delete(int bid)
+        {
+            Book book = context.Books.Find(bid);
+            if(book != null)
+            {
+
+
+            context.Books.Remove(book);
+            context.SaveChanges();
+            }
+            return RedirectToAction("List", "Book");
+        }
+
     }
 }

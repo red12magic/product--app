@@ -53,9 +53,15 @@
                        > @users.Find(u => u.UserID == book.UserID)?.Username</a>
                    
                 </td>
-                <td>
+                <td class="d-flex gap-2">
                     <a asp-controller="Book" asp-action="Detail"
                        asp-route-id="@book.BookID">View</a>
+
+                    <a asp-controller="Book" asp-action="Edit"
+                       asp-route-id="@book.BookID">Edit</a>
+
+                    <a asp-controller="Book" asp-action="Delete"
+                       asp-route-id="@book.BookID">Delete</a>
                 </td>
             </tr>
         }
