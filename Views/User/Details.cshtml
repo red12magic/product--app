@@ -1,0 +1,41 @@
+﻿@model User
+@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@{
+    ViewBag.Title = "User's Books";
+}
+<div class="d-flex"> 
+    <h2>Name:@Model.Username </h2>
+    <a asp-action="ChangePassword" asp-controller="User"  class="btn btn-primary">Change Password</a>
+</div>
+<h4>   Books  </h4>
+
+@if (ViewBag.Books != null  )
+{
+    <ul>
+        @foreach (Book book in ViewBag.Books )
+
+        {
+            if
+               (Model.UserID == book.UserID)
+            {
+                
+            
+            <li>
+                <strong> Books Name:</strong> @book.BookName <br />
+                <strong>Price:</strong> @book.BookPrice <br />
+                <strong>Author ID:</strong> @book.UserID <br/>
+            </li>
+        }}
+    </ul>
+}
+else
+{
+    <p>No books available for this user.</p>
+}

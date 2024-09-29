@@ -49,8 +49,7 @@
                 <td>@book.BookName</td>
                 <td>@($"{book.BookPrice:C}")</td>
                 <td>
-                    <a asp-controller="User" asp-action="Detail"
-                       > @users.Find(u => u.UserID == book.UserID)?.Username</a>
+                    <a asp-controller="User" asp-action="Details" asp-route-id="@book.UserID"> @users.Find(u => u.UserID == book.UserID)?.Username</a>
                    
                 </td>
                 <td class="d-flex gap-4">

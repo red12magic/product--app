@@ -57,8 +57,8 @@ namespace product_app.Controllers
 
             if (!int.TryParse(userIdString, out userId))
             {
-                // Handle the case where conversion fails, e.g., return an error response
-                return BadRequest("Invalid user ID.");
+                
+                return BadRequest("Invalid user ID.");//
             }
 
             Book book = new Book
@@ -67,10 +67,10 @@ namespace product_app.Controllers
                 BookPrice = (decimal)bookPrice,
                 UserID = userId // Assign the converted integer user ID
             };
-
+            //important after every post
             context.Books.Add(book);
             context.SaveChanges();
-
+                                   // action // controller
             return RedirectToAction("List", "Book");
         }
 
@@ -88,7 +88,7 @@ namespace product_app.Controllers
                 books = books.Where(b => b.UserID == authorId.Value);
             }
             ViewBag.Users = context.Users.ToList();
-
+                        
             return View("List", books.ToList());
         }
        
