@@ -67,10 +67,10 @@ namespace product_app.Controllers
                 BookPrice = (decimal)bookPrice,
                 UserID = userId // Assign the converted integer user ID
             };
-
+            //important after every post
             context.Books.Add(book);
             context.SaveChanges();
-
+                                   // action // controller
             return RedirectToAction("List", "Book");
         }
 
@@ -88,7 +88,7 @@ namespace product_app.Controllers
                 books = books.Where(b => b.UserID == authorId.Value);
             }
             ViewBag.Users = context.Users.ToList();
-
+                        
             return View("List", books.ToList());
         }
        
