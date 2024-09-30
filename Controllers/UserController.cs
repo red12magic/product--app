@@ -31,10 +31,10 @@ namespace product_app.Controllers {
             int userId;
 
 
-            if (!int.TryParse(userIdString, out userId))
+            if (!int.TryParse(userIdString, out userId)) // IF THEN USER ID OUT 
             {
 
-                return BadRequest("Invalid user ID.");//
+                return BadRequest("Invalid user ID.");// THROW ERROR 
             }
 
         User user=context.Users.Find(userId);

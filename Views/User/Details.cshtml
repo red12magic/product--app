@@ -5,14 +5,24 @@
 *@
 @{
 }
+@{
+    var userIdString = Context.Session.GetString("UserId");
+
+    int userId;
+
+    int.TryParse(userIdString, out userId);
+
+}
 
 
 @{
-    ViewBag.Title = "User's Books";
 }
 <div class="d-flex"> 
     <h2>Name:@Model.Username </h2>
-    <a asp-action="ChangePassword" asp-controller="User"  class="btn btn-primary">Change Password</a>
+    @if (userId == Model.UserID)
+    {
+        <a asp-action="ChangePassword" asp-controller="User"  class="btn ms-2 btn-primary">Change Password</a>
+    }
 </div>
 <h4>   Books  </h4>
 
