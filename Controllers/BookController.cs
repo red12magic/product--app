@@ -5,7 +5,6 @@ using Product_app.Models;
 
 namespace product_app.Controllers
 {
-    [SessionAuthorization]
     public class BookController : Controller // 
     {
 
@@ -49,6 +48,8 @@ namespace product_app.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         public IActionResult Add(string bookName, double bookPrice)
         {
@@ -57,10 +58,9 @@ namespace product_app.Controllers
 
             if (!int.TryParse(userIdString, out userId))
             {
-                // Handle the case where conversion fails, e.g., return an error response
                 return BadRequest("Invalid user ID.");
             }
-
+            
             Book book = new Book
             {
                 BookName = bookName,

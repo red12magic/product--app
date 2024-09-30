@@ -34,7 +34,6 @@ app.UseRouting();
 
 app.UseSession();
 
-app.UseMiddleware<RedirectIfAuthenticatedMiddleware>();
 
 app.UseAuthorization();
 
