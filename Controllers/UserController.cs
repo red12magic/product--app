@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Product_app.Models;
 
 namespace product_app.Controllers {
-    [SessionAuthorization]
     public class UserController : Controller {
 
         private BookStoreContext context { get; set; }
