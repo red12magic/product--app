@@ -26,7 +26,7 @@ namespace product__app.Controllers
             if (user != null)
             {
 
-                HttpContext.Session.SetString("UserId", user.UserID.ToString());
+                HttpContext.Session.SetInt32("UserId", user.UserID);
                 return RedirectToAction("List", "Book");
             }
             else

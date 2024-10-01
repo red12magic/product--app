@@ -4,9 +4,12 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    var userId = Context.Session.GetInt32("UserId");
+
 }
 
 <form asp-action="Edit" class="w-50 mx-auto d-flex flex-column gap-2" method="post">
+    <input class="invisible" asp-for="UserID" value="@userId" />
     <div class="form-group">
         <label asp-for="BookName">Book name</label>
         <input asp-for="BookName" class="form-control" />

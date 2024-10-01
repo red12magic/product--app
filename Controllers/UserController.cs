@@ -27,23 +27,17 @@ namespace product_app.Controllers {
 
         public IActionResult ChangePassword(string oldpassword,string newpassword)
         {
-            var userIdString = HttpContext.Session.GetString("UserId");
-            int userId;
+            var userId = HttpContext.Session.GetInt32("UserId");
 
 
-            if (!int.TryParse(userIdString, out userId)) // IF THEN USER ID OUT 
-            {
-
-                return BadRequest("Invalid user ID.");// THROW ERROR 
-            }
-
-        User user=context.Users.Find(userId);
-            if (user.Password== oldpassword)
+        User user=context.Users.SingleOrDefault(u => u.UserID == userId);
+            if (user.Password == oldpassword)
             {
                 user.Password = newpassword;
+                context.Users.Update(user);
                 context.SaveChanges();
             }
-            return View();
+            return RedirectToAction("Details", "User");
         }
 
 

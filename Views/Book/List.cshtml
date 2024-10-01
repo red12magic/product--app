@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Book  List";
     List<User> users = ViewBag.Users;
+    var userId = Context.Session.GetInt32("UserId");
+
 }
 <h1>Book List (@ViewBag.Type)</h1>
 <div class="d-flex mb-3 h-auto">
@@ -54,13 +56,16 @@
                 </td>
                 <td class="d-flex gap-4">
                     <a asp-controller="Book" asp-action="Detail"
-                       asp-route-id="@book.UserID">View</a>
-
+                       asp-route-id="@book.BookID">View</a>
+                       @if(userId == book.UserID)
+                    {
+                        
                     <a asp-controller="Book" asp-action="Edit" class="btn-sm btn-secondary text-decoration-none"
                        asp-route-id="@book.BookID">Edit</a>
 
                     <a asp-controller="Book" asp-action="Delete" class="btn-sm btn-danger text-decoration-none"
                        asp-route-id="@book.BookID">Delete</a>
+                    }
                 </td>
             </tr>
         }

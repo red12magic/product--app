@@ -16,7 +16,7 @@ namespace product_app.Controllers
         }
         public IActionResult Detail(int id)
         {
-            var book = context.Books.Find(id);
+            var book = context.Books.SingleOrDefault(b => b.BookID == id);
             return View(book);
         }
 
@@ -33,9 +33,7 @@ namespace product_app.Controllers
         [HttpGet]
         public IActionResult My()
         {
-            var userIdString = HttpContext.Session.GetString("UserId");
-            int userId;
-            int.TryParse(userIdString, out userId);
+            var userId = HttpContext.Session.GetInt32("UserId");
             ViewBag.Type = "My";
             var books = context.Books.Where(b => b.UserID == userId).ToList();
             ViewBag.Users = context.Users.ToList();
@@ -53,19 +51,13 @@ namespace product_app.Controllers
         [HttpPost]
         public IActionResult Add(string bookName, double bookPrice)
         {
-            var userIdString = HttpContext.Session.GetString("UserId");
-            int userId;
-
-            if (!int.TryParse(userIdString, out userId))
-            {
-                return BadRequest("Invalid user ID.");
-            }
+            int userId = HttpContext.Session.GetInt32("UserId")?? 1;
             
             Book book = new Book
             {
                 BookName = bookName,
                 BookPrice = (decimal)bookPrice,
-                UserID = userId // Assign the converted integer user ID
+                UserID = userId 
             };
             //important after every post
             context.Books.Add(book);
@@ -73,7 +65,7 @@ namespace product_app.Controllers
                                    // action // controller
             return RedirectToAction("List", "Book");
         }
-
+                                                                    //x= 0 
 
         [HttpGet]
         public IActionResult Search(string search, int? authorId)
@@ -102,14 +94,10 @@ namespace product_app.Controllers
 
         [HttpPost]
         public IActionResult Edit(Book B1)
-        {
-          
-                
+        {                
                 context.Books.Update(B1);
                 context.SaveChanges();
                 return RedirectToAction("List", "Book");
-            
-                
         }
 
         [HttpGet]
